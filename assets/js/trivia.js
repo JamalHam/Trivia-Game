@@ -40,7 +40,7 @@ var triviaQuestions = [
         answer: "d"
     },
     {
-        question: "what is the common theme of All Might's Attacks"
+        question: "what is the common theme of All Might's Attacks",
         questionOptions:{
             a: 'He Punches with a Smile',
             b: 'He always goes plus ultra',
@@ -50,7 +50,7 @@ var triviaQuestions = [
         answer: "b"
     },
     {
-        question: "what is the common theme of All Might's Attacks"
+        question: "what is the common theme of All Might's Attacks",
         questionOptions:{
             a: 'He Punches with a Smile',
             b: 'He always goes plus ultra',
@@ -60,7 +60,7 @@ var triviaQuestions = [
         answer: "b"
     },
     {
-        question: "Who stole Jonathan's body (JoJo)"
+        question: "Who stole Jonathan's body (JoJo)",
         questionOptions:{
             a: 'It was me Dio!!!!!',
             b: 'Muda Muda Muda Muda Muda Muda Muda Muda Muda Muda',
@@ -70,3 +70,36 @@ var triviaQuestions = [
         answer: "a"
     },     
 ]
+
+var questionsList = document.getElementById('qList');
+
+var ulQuestionList = document.getElementById('qUl');
+
+
+for( var i = 0; i < triviaQuestions.length; i++){
+	
+	
+	var h2 = document.createElement("h2");
+	
+	questionsList.append(h2);
+	
+	h2.append(triviaQuestions[i].question);
+	
+	
+	for (var prop in triviaQuestions[i].questionOptions){
+		
+		if(triviaQuestions[i].questionOptions.hasOwnProperty(prop)){
+			
+			var li = document.createElement("li");
+			
+			questionsList.append(li);
+			
+			li.append(triviaQuestions[i].questionOptions[prop]);
+			
+			
+		}
+			
+	}
+	
+	
+}
