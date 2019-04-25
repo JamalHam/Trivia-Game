@@ -84,6 +84,9 @@ for( var i = 0; i < triviaQuestions.length; i++){
 	questionsList.append(h2);
 	
 	h2.append(triviaQuestions[i].question);
+    
+    
+	//var h2markup = `<h2>${triviaQuestions[i].question}</h2>`
 	
 	
 	for (var prop in triviaQuestions[i].questionOptions){
@@ -94,7 +97,16 @@ for( var i = 0; i < triviaQuestions.length; i++){
 			
 			questionsList.append(li);
 			
-			li.append(triviaQuestions[i].questionOptions[prop]);
+			
+			var strOne = '<input type="radio" id="' + triviaQuestions[i].questionOptions[prop] + '" name="option" value="' + triviaQuestions[i].questionOptions[prop] + '">';
+    		
+			var strTwo = '<label for="' + triviaQuestions[i].questionOptions[prop] + '">' + triviaQuestions[i].questionOptions[prop] + '</label>';
+			
+			li.innerHTML = strOne;
+			
+			li.innerHTML += strTwo;
+			
+			//li.append(triviaQuestions[i].questionOptions[prop]);
 			
 			
 		}
