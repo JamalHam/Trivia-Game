@@ -50,12 +50,12 @@ var triviaQuestions = [
         answer: "b"
     },
     {
-        question: "what is the common theme of All Might's Attacks",
+        question: "what is Luffy's goal",
         questionOptions:{
-            a: 'He Punches with a Smile',
-            b: 'He always goes plus ultra',
-            c: 'All of his techniques reference the 52 states',
-            d: 'SMASSSSSHHHHHH1'
+            a: 'Collect the Dragon Balls',
+            b: 'Become Hokage',
+            c: 'Become King of the Pirates',
+            d: 'Protect his friends'
         },
         answer: "b"
     },
@@ -79,9 +79,13 @@ var ulQuestionList = document.getElementById('qUl');
 for( var i = 0; i < triviaQuestions.length; i++){
 	
 	
+	var divOne = document.createElement("div");
+	
 	var h2 = document.createElement("h2");
 	
-	questionsList.append(h2);
+	questionsList.append(divOne);
+	
+	divOne.append(h2);
 	
 	h2.append(triviaQuestions[i].question);
     
@@ -95,10 +99,10 @@ for( var i = 0; i < triviaQuestions.length; i++){
 			
 			var li = document.createElement("li");
 			
-			questionsList.append(li);
+			divOne.append(li);
 			
 			
-			var strOne = '<input type="radio" id="' + triviaQuestions[i].questionOptions[prop] + '" name="option" value="' + triviaQuestions[i].questionOptions[prop] + '">';
+			var strOne = '<input type="radio" id="' + triviaQuestions[i].questionOptions[prop] + '" name="' + triviaQuestions[i].question + '"' + triviaQuestions[i].questionOptions[prop] + '">';
     		
 			var strTwo = '<label for="' + triviaQuestions[i].questionOptions[prop] + '">' + triviaQuestions[i].questionOptions[prop] + '</label>';
 			
