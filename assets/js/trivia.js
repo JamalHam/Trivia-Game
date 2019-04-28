@@ -1,6 +1,50 @@
+var correctAnswers = 0;
+
+if (!Object.keys) {
+  Object.keys = (function() {
+    'use strict';
+    var hasOwnProperty = Object.prototype.hasOwnProperty,
+        hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
+        dontEnums = [
+          'toString',
+          'toLocaleString',
+          'valueOf',
+          'hasOwnProperty',
+          'isPrototypeOf',
+          'propertyIsEnumerable',
+          'constructor'
+        ],
+        dontEnumsLength = dontEnums.length;
+
+    return function(obj) {
+      if (typeof obj !== 'function' && (typeof obj !== 'object' || obj === null)) {
+        throw new TypeError('Object.keys called on non-object');
+      }
+
+      var result = [], prop, i;
+
+      for (prop in obj) {
+        if (hasOwnProperty.call(obj, prop)) {
+          result.push(prop);
+        }
+      }
+
+      if (hasDontEnumBug) {
+        for (i = 0; i < dontEnumsLength; i++) {
+          if (hasOwnProperty.call(obj, dontEnums[i])) {
+            result.push(dontEnums[i]);
+          }
+        }
+      }
+      return result;
+    };
+  }());
+}
+
 var triviaQuestions = [
     {
         question: "who were the early 2000's big 3 of shounen Anime?",
+        questionNumber: 'q1',
         questionOptions:{
             a: 'Naruto, Dragon Ball and One Piece',
             b: 'Naruto, Dragon Ball and Yu Yu Hakusho',
@@ -11,6 +55,7 @@ var triviaQuestions = [
     },
     {
         question: "What is the name of Yusuke's ancestral fore father",
+        questionNumber: 'q2',
         questionOptions:{
             a: 'Raiden',
             b: 'Raizen',
@@ -21,6 +66,7 @@ var triviaQuestions = [
     },
     {
         question: "Finish this sentence, 'His Power level its....'",
+        questionNumber: 'q3',
         questionOptions:{
             a: 'Over 1000!',
             b: 'Over 9000!',
@@ -31,6 +77,7 @@ var triviaQuestions = [
     },  
     {
         question: "what is the name of the demon fox the resides inside naruto",
+        questionNumber: 'q4',
         questionOptions:{
             a: 'Saitama',
             b: 'Kyuubi!',
@@ -41,6 +88,7 @@ var triviaQuestions = [
     },
     {
         question: "what is the common theme of All Might's Attacks",
+        questionNumber: 'q5',
         questionOptions:{
             a: 'He Punches with a Smile',
             b: 'He always goes plus ultra',
@@ -51,6 +99,7 @@ var triviaQuestions = [
     },
     {
         question: "what is Luffy's goal",
+        questionNumber: 'q6',
         questionOptions:{
             a: 'Collect the Dragon Balls',
             b: 'Become Hokage',
@@ -61,6 +110,7 @@ var triviaQuestions = [
     },
     {
         question: "Who stole Jonathan's body (JoJo)",
+        questionNumber: 'q7',
         questionOptions:{
             a: 'It was me Dio!!!!!',
             b: 'Muda Muda Muda Muda Muda Muda Muda Muda Muda Muda',
@@ -101,8 +151,7 @@ for( var i = 0; i < triviaQuestions.length; i++){
 			
 			divOne.append(li);
 			
-			
-			var strOne = '<input type="radio" id="' + triviaQuestions[i].questionOptions[prop] + '" name="' + triviaQuestions[i].question + '"' + triviaQuestions[i].questionOptions[prop] + '">';
+			var strOne = '<input type="radio" id="' + prop + '" name="' + triviaQuestions[i].questionNumber + '">';
     		
 			var strTwo = '<label for="' + triviaQuestions[i].questionOptions[prop] + '">' + triviaQuestions[i].questionOptions[prop] + '</label>';
 			
@@ -118,4 +167,20 @@ for( var i = 0; i < triviaQuestions.length; i++){
 	}
 	
 	
+}
+
+function quizSubmit(){
+    for( var i = 0; i < triviaQuestions.length; i++){
+        var qvar = triviaQuestions[i].questionNumber;
+        var radios = document.getElementsByName(qvar);
+        console.log(qvar);
+        console.log(radios);
+        
+        for(var l = 0; l < radios.length; l++){
+            if(radios[l].checked){
+                console.log(radios[l].id + " was checked");
+        }
+        }
+    }
+    
 }
