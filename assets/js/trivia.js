@@ -1,46 +1,5 @@
 var correctAnswers = 0;
 
-if (!Object.keys) {
-  Object.keys = (function() {
-    'use strict';
-    var hasOwnProperty = Object.prototype.hasOwnProperty,
-        hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'),
-        dontEnums = [
-          'toString',
-          'toLocaleString',
-          'valueOf',
-          'hasOwnProperty',
-          'isPrototypeOf',
-          'propertyIsEnumerable',
-          'constructor'
-        ],
-        dontEnumsLength = dontEnums.length;
-
-    return function(obj) {
-      if (typeof obj !== 'function' && (typeof obj !== 'object' || obj === null)) {
-        throw new TypeError('Object.keys called on non-object');
-      }
-
-      var result = [], prop, i;
-
-      for (prop in obj) {
-        if (hasOwnProperty.call(obj, prop)) {
-          result.push(prop);
-        }
-      }
-
-      if (hasDontEnumBug) {
-        for (i = 0; i < dontEnumsLength; i++) {
-          if (hasOwnProperty.call(obj, dontEnums[i])) {
-            result.push(dontEnums[i]);
-          }
-        }
-      }
-      return result;
-    };
-  }());
-}
-
 var triviaQuestions = [
     {
         question: "who were the early 2000's big 3 of shounen Anime?",
@@ -95,7 +54,7 @@ var triviaQuestions = [
             c: 'All of his techniques reference the 52 states',
             d: 'SMASSSSSHHHHHH1'
         },
-        answer: "b"
+        answer: "c"
     },
     {
         question: "what is Luffy's goal",
@@ -106,7 +65,7 @@ var triviaQuestions = [
             c: 'Become King of the Pirates',
             d: 'Protect his friends'
         },
-        answer: "b"
+        answer: "c"
     },
     {
         question: "Who stole Jonathan's body (JoJo)",
@@ -162,25 +121,28 @@ for( var i = 0; i < triviaQuestions.length; i++){
 			//li.append(triviaQuestions[i].questionOptions[prop]);
 			
 			
-		}
-			
+		}	
 	}
-	
-	
 }
 
 function quizSubmit(){
     for( var i = 0; i < triviaQuestions.length; i++){
         var qvar = triviaQuestions[i].questionNumber;
+        var currentAnswer = triviaQuestions[i].answer;
         var radios = document.getElementsByName(qvar);
-        console.log(qvar);
-        console.log(radios);
+        //console.log(currentAnswer);
+        //console.log(qvar);
+        //console.log(radios);
         
         for(var l = 0; l < radios.length; l++){
             if(radios[l].checked){
                 console.log(radios[l].id + " was checked");
-        }
+                
+                if(radios[l].id == currentAnswer){
+                    correctAnswers += 1;
+                    console.log(correctAnswers);
+                }
+            }
         }
     }
-    
 }
