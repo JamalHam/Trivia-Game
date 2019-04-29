@@ -145,4 +145,6 @@ function quizSubmit(){
             }
         }
     }
+    
+    document.getElementById("result").innerHTML = "you have " + correctAnswers + " correct answers";
 }
