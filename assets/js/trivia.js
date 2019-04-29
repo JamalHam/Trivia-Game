@@ -80,27 +80,34 @@ var triviaQuestions = [
     },     
 ]
 
+
 var questionsList = document.getElementById('qList');
 
-var ulQuestionList = document.getElementById('qUl');
+var ulQuestionList = document.getElementById('ulList');
 
 
 for( var i = 0; i < triviaQuestions.length; i++){
 	
+	console.log(i)
 	
 	var divOne = document.createElement("div");
 	
+	var classNumber = i + 1;
+	
+	var newclass = "block-" + classNumber;
+	
+	divOne.classList.add('block')
+	
+	divOne.classList.add(newclass);
+	
 	var h2 = document.createElement("h2");
 	
-	questionsList.append(divOne);
+	ulQuestionList.append(divOne);
 	
 	divOne.append(h2);
 	
 	h2.append(triviaQuestions[i].question);
     
-    
-	//var h2markup = `<h2>${triviaQuestions[i].question}</h2>`
-	
 	
 	for (var prop in triviaQuestions[i].questionOptions){
 		
@@ -117,22 +124,21 @@ for( var i = 0; i < triviaQuestions.length; i++){
 			li.innerHTML = strOne;
 			
 			li.innerHTML += strTwo;
-			
-			//li.append(triviaQuestions[i].questionOptions[prop]);
-			
-			
+
 		}	
 	}
 }
+
+var blockList = document.getElementsByClassName("block");
+
+blockList[0].classList.add("active");
 
 function quizSubmit(){
     for( var i = 0; i < triviaQuestions.length; i++){
         var qvar = triviaQuestions[i].questionNumber;
         var currentAnswer = triviaQuestions[i].answer;
         var radios = document.getElementsByName(qvar);
-        //console.log(currentAnswer);
-        //console.log(qvar);
-        //console.log(radios);
+        
         
         for(var l = 0; l < radios.length; l++){
             if(radios[l].checked){
@@ -148,3 +154,57 @@ function quizSubmit(){
     
     document.getElementById("result").innerHTML = "you have " + correctAnswers + " correct answers";
 }
+
+
+/* carousel function */
+
+var slide = document.querySelectorAll(".gallery .photos .block");
+
+var i = 0;
+
+function moveLeft() {
+  slide[i].classList.remove("active");
+  i--;
+
+  if (i < 0) {
+    i = slide.length - 1;
+  }
+  slide[i].classList.add("active");
+};
+
+function moveRight() {
+  slide[i].classList.remove("active");
+  i++;
+
+  if (i >= slide.length) {
+    i = 0;
+  }
+
+  slide[i].classList.add("active");
+};
+
+
+
+
+
+
+    /* timer function that triggers the switch if the other functions work */
+
+
+/*
+var timer = null;
+
+
+
+function startSetInterval() {
+    timer = setInterval("moveRight()", 5000);
+}
+
+startSetInterval();
+
+function clearSetInterval() {
+    clearInterval(timer);
+}*/
+
+/* carousel function end */ 
+

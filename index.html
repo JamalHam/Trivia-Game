@@ -4,25 +4,31 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0">
 <meta charset="UTF­8">
-<title></title>
+
+<title>Trivia Game</title>
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
 	
 <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
     
 <!--<link rel="stylesheet" href="assets/css/style.css">   -->
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
     
-<div id="qList">
-	<ul id="qUl">
-	</ul>
+<div id="qList" class= "gallery">
+	<div id="ulList" class="photos">
+	</div>
 </div> 
     
 <div>
     <button onClick="quizSubmit()"> Submit</button>
 </div> 
-    
+<div class="buttons">
+		<a class="prev bhov" onclick="moveLeft()"  href="#">Backward</a>
+		<a class="next bhov" onclick="moveRight()" href="#">Forward</a>
+</div>    
 <div>
     <h4 id="result"></h4>
 </div>
