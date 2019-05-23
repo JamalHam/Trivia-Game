@@ -1,5 +1,13 @@
 var correctAnswers = 0;
 
+var quickSubmit = document.getElementById("submit-something");
+
+var submitHolder = document.getElementById("button-submit-div");
+
+var forback = document.getElementsByClassName("buttons");
+
+var display = document.querySelector("#time");
+
 var triviaQuestions = [
     {
         question: "who were the early 2000's big 3 of shounen Anime?",
@@ -153,6 +161,8 @@ function quizSubmit(){
     }
     
     document.getElementById("result").innerHTML = "you have " + correctAnswers + " correct answers";
+	
+	submitHolder.innerHTML = "";
 }
 
 
@@ -177,15 +187,49 @@ function moveRight() {
   i++;
 
   if (i >= slide.length) {
-    i = 0;
+    /*i = 0;*/
+	  stopSliding();
   }
 
   slide[i].classList.add("active");
 };
 
+function stopSliding(){
+	submitHolder.classList.remove("invisible-button");
+	
+	forback[0].innerHTML = "";
+}
 
 
+function startTimer(duration, display){
+	var timer = duration, minutes, seconds;
+	
+	setInterval(function(){
+		minutes = parseInt(timer/60, 10)
+		seconds = parseInt(timer % 60, 10);
+		
+		minutes = minutes < 10 ? "0" + minutes : minutes;
+		seconds = seconds < 10 ? "0" + seconds : seconds;
+		
+		display.textContent = minutes + ":" + seconds;
+		
+		if (--timer < 0){
+			timer = duration;
+		}
+	}, 1000);
+}
 
+window.onload = function() {
+	var fiveMinutes = 60 * 5;
+	var thirtySeconds = 30;
+		
+	startTimer(thirtySeconds, display);
+}
+
+
+if (display.innerHTML == "00:00"){
+	moveRight();
+}
 
 
     /* timer function that triggers the switch if the other functions work */

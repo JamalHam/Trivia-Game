@@ -30,7 +30,7 @@ a:hover{
 }      
 .photos{
     position: relative;
-    height: 800px;
+    height: 300px;
 		}
 
 .block{
@@ -40,7 +40,7 @@ a:hover{
     background-color: #f2f2f2;
     left: 0;
     opacity: 0;
-    transition: opacity 1.5s;
+    transition: opacity .5s;
 		}
 
 .active{
@@ -76,6 +76,10 @@ a:hover{
     display: none;
 }
 
+.invisible-button{
+	visibility: hidden;
+}
+
 .BCat{
     display: flex;
     flex-direction: row;
@@ -103,6 +107,20 @@ a:hover{
 
 p:first-child{
     color: red;
+}
+
+.buttons{
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	
+}
+#button-submit-div{
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 @media only screen and (max-width: 1400px){
