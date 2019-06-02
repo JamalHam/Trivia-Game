@@ -8,6 +8,8 @@ var forback = document.getElementsByClassName("buttons");
 
 var display = document.querySelector("#time");
 
+var newInterval;
+
 var triviaQuestions = [
     {
         question: "who were the early 2000's big 3 of shounen Anime?",
@@ -185,10 +187,13 @@ function moveLeft() {
 function moveRight() {
   slide[i].classList.remove("active");
   i++;
-
+  clearIt();
+  startTimer(30, display);    
+    
   if (i >= slide.length) {
     /*i = 0;*/
 	  stopSliding();
+      clearIt();
   }
 
   slide[i].classList.add("active");
@@ -204,7 +209,7 @@ function stopSliding(){
 function startTimer(duration, display){
 	var timer = duration, minutes, seconds;
 	
-	setInterval(function(){
+	newInterval = setInterval(function(){
 		minutes = parseInt(timer/60, 10)
 		seconds = parseInt(timer % 60, 10);
 		
@@ -226,12 +231,20 @@ window.onload = function() {
 	startTimer(thirtySeconds, display);
 }
 
-
-if (display.innerHTML == "00:00"){
-	moveRight();
+function clearIt(){
+    clearInterval(newInterval);
+    display.textContent ="";
 }
 
+function checkTime(){
+    if (display.innerHTML == "00:00"){
+	   moveRight();
+    }else{
+        console.log("It's not 00:00 yet")
+    }
+}
 
+setInterval(checkTime, 1000);
     /* timer function that triggers the switch if the other functions work */
 
 
